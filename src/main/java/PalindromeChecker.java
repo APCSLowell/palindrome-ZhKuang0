@@ -45,7 +45,7 @@ public void tester()
 public String noCapitals(String word){
   String rstr = "";
   for(int i=0; i < word.length(); i ++){
-    rstr += (word.substring(i, i++)).toLowerCase;
+    rstr += (word.substring(i, i++)).toLowerCase();
   }
   return rstr;
 }
@@ -73,6 +73,6 @@ public String reverse(String str)
     String sNew = new String();
     for (int i = str.length(); i > 0; i--) {
         sNew += str.substring(i--, i); 
-    return sNew;
 }
+return sNew;
 }
