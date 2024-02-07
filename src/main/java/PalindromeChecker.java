@@ -2,7 +2,7 @@ import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
 import java.util.Scanner; // Import the Scanner class to read text files
 
-public class PalindromeChecker {
+class PalindromeChecker {
 public void tester()
 {
   //String lines[] = loadStrings("palindromes.txt");
@@ -25,7 +25,7 @@ public void tester()
   System.out.println("there are " + lines.length + " lines");
   for (int i=0; i < lines.length; i++) 
   {
-    if(palindrome(lines[i])==true)
+    if(isPalindrome(lines[i])==true)
     {
       System.out.println(lines[i] + " IS a palindrome.");
     }
@@ -35,44 +35,42 @@ public void tester()
     }
   }
 }
-  public boolean palindrome(String word) 
-  {
-    String baseWord = lettercheck(noCapitals(moveSpaces(word))); 
-    String reversedWord = reverse(baseWord);
-    return baseWord.equals(reversedWord);
-  }
+  public boolean isPalindrome(String sWord){
+  String scanWord = onlyLetters(noSpaces(noCapitals(sWord)));
+  String reversesWord = reverse(scanWord);
+  return (scanWord.equals(reversesWord));
+}
 
-public String noCapitals(String word){
-  String rstr = "";
-  for(int i=0; i < word.length(); i ++){
-    rstr += (word.substring(i, i++)).toLowerCase();
-  }
-  return rstr;
+public String noCapitals(String sWord){
+  return sWord.toLowerCase();
 }
-public String moveSpaces(String word){
-  String mspc = "";
-  for( int i = 0; i < word.length(); i++) {
-    if(word.substring(i,i+1).equals(" ")) {
-    }else{
-      mspc += word.substring(i,i+1);
-    }
-  }
-  return mspc;
-}
-public String lettercheck(String str){
-  String increword = "";
-  for (int i = 0 ; i < str.length(); i ++) {
-    if (Character.isLetter(str.charAt(i))) {
-      increword += str.substring(i, i+1);
-   }
-  }
-  return increword;
-}
-public String reverse(String str)
+public String noSpaces(String sWord)
 {
-    String sNew = new String();
-    for (int i = str.length(); i > 0; i--) {
-        sNew += str.substring(i--, i); 
+  char spc = ' ';
+  String newstr = "";
+  for (int i = 0; i < sWord.length(); i++) {
+    if (!(sWord.charAt(i) == spc))
+    newstr += sWord.charAt(i);
+  }
+  return newstr;
 }
-return sNew;
-}}
+
+public String onlyLetters(String sString){
+   if (sString.length() == 0)
+   return "";
+   else 
+   if (Character.isLetter(sString.charAt(0)))
+   return sString.charAt(0) + onlyLetters(sString.substring(1));
+   else
+   return onlyLetters(sString.substring(1));
+}
+
+public String reverse(String sWord)
+{
+  String tmp = new String();
+  for (int i = sWord.length(); i > 0; i--) {
+      tmp += sWord.substring(i-1,i);
+  }
+  return tmp;
+}
+}
