@@ -35,7 +35,7 @@ public void tester()
     }
   }
 }
-  public boolean isPalindrome(String sWord){
+  public boolean palindrome(String sWord){
   String scanWord = onlyLetters(noSpaces(noCapitals(sWord)));
   String reversesWord = reverse(scanWord);
   return (scanWord.equals(reversesWord));
